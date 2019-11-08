@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.50'
+}
+
+group 'org.bernshtam'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://artifacts.unidata.ucar.edu/repository/unidata-all/"
+    }
+}
+ext.netcdfJavaVersion = "5.1.0"
+ext.slf4jVersion = "1.7.28"
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile "edu.ucar:cdm:${netcdfJavaVersion}"
+    compile "org.slf4j:slf4j-jdk14:${slf4jVersion}"
+    compile "edu.ucar:grib:${netcdfJavaVersion}"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
