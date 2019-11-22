@@ -13,16 +13,22 @@ repositories {
     maven {
         url "https://artifacts.unidata.ucar.edu/repository/unidata-all/"
     }
+    flatDir {
+        dirs 'libs'
+    }
 }
 ext.netcdfJavaVersion = "5.1.0"
 ext.slf4jVersion = "1.7.28"
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation name: "JGribX"
     compile "edu.ucar:cdm:${netcdfJavaVersion}"
     compile "org.slf4j:slf4j-jdk14:${slf4jVersion}"
     compile "edu.ucar:grib:${netcdfJavaVersion}"
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
 }
 
 compileKotlin {
